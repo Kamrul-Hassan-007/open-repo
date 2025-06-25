@@ -1,0 +1,189 @@
+⚠️ Don't wanna make a bash install.sh stop complaining if wanna use my setup guide than read it..Don't be 🐱 .
+
+
+📝 Arch Hyprland Custom Setup Notes
+✅ Initial Setup
+
+
+Base system: Arch Linux
+DE installed first: KDE Plasma
+WM added later: Hyprland (Wayland compositor)
+
+
+
+
+🔳 1. Installed Waybar
+
+#  sudo pacman -S waybar
+
+- Waybar is the system bar used with Hyprland.
+- Waybar config was created manually in ~/.config/waybar/ by copying the default from /etc/xdg/waybar/.
+
+
+
+
+🔌 2. Wi-Fi not working in Hyprland
+
+- Plasma could see Wi-Fi, Hyprland could not.
+- Solved by ensuring NetworkManager is enabled:
+
+#  sudo systemctl enable --now NetworkManager
+
+- Checked devices with:
+#  nmcli device
+
+- Confirmed user is in the correct group:
+#  sudo usermod -aG network $USER
+
+
+
+
+
+🎨 3. Qt Theming (For KDE/Qt apps like Dolphin)
+
+#  sudo pacman -S qt5ct qt6ct kvantum-qt5 kvantum
+
+- Set Environment Variables
+- Used system-wide method:
+#  sudo nano /etc/environment
+
+- Added:
+   QT_QPA_PLATFORMTHEME=qt5ct
+   QT_STYLE_OVERRIDE=kvantum
+
+⚠️ Do not use export inside this file!
+
+-Applied Theme:
+-Opened Kvantum Manager:
+
+#  kvantummanager
+- Selected dark theme (e.g. KvArcDark)
+
+-Set style in qt5ct to kvantum
+
+- qt5ct warning about QT_STYLE_OVERRIDE can be ignored
+
+
+
+
+
+🧩 4. GTK Theming (For apps like nwg-look, Nemo)
+
+- Used nwg-look to apply GTK themes:
+#  sudo pacman -S nwg-look
+
+- Set GTK theme (e.g., Graphite-Dark), icons, and cursor
+
+
+
+
+
+🔊 5. Audio Control
+
+#  sudo pacman -S pavucontrol
+- GUI tool for managing audio input/output (works with Pulse or PipeWire)
+
+
+
+
+
+🧹 6. System Cleanup
+- Removed unnecessary cache:
+
+#  sudo pacman -S pacman-contrib
+#  sudo paccache -r
+
+- Clean orphan packages:
+#  sudo pacman -Rns $(pacman -Qtdq)
+
+
+
+
+
+🖱 7. File Managers
+- Dolphin (Qt) — supports right-click > compress
+
+- Nemo (GTK) — does not show compress by default
+
+- Can install file-roller for archive integration:
+
+#  sudo pacman -S file-roller
+
+
+
+
+
+
+8. Wallpaper Daemon & Shuffle Loop so theme changes with wallpaper:
+- To set theme color of terminal like alacritty, vim, rofi, wofi, waybar, etc. we need to use paywal to install this:
+#  sudo pacman -S paywal 
+#  sudo pacman -S swww
+
+-  exec-once = swww-daemon --format xrgb
+-  exec-once = bash -c ' sleep 1; while true; do IMG="$(find /home/sloth/wallpaper/shuffle/ -type f | shuf -n1)" swww img "$IMG" --transition-type instant wal -i "$IMG" -q  hyprctl reload sleep 5 done' &
+
+- Starts swww with xrgb format.
+- Randomly changes wallpaper every 5 seconds.
+- Applies Pywal theme and forces instant swap (no animation).
+- Reloads Hyprland to apply new colors.
+
+
+
+
+
+
+9. Pywal + Alacritty Integration
+
+- By default paywal doesnt creat toml file so we need to tell pywal to make one so 
+- Created template: nano ~/.config/wal/templates/colors-alacritty.toml
+- Add this for toml file:
+
+----------------------------------------------------------------
+                                                               
+[colors.primary]                                                
+background = '{background}'
+foreground = '{foreground}'
+
+[colors.cursor]
+text = '{foreground}'
+cursor = '{cursor}'
+
+[colors.normal]
+black   = '{color0}'
+red     = '{color1}'
+green   = '{color2}'
+yellow  = '{color3}'
+blue    = '{color4}'
+magenta = '{color5}'
+cyan    = '{color6}'
+white   = '{color7}'
+
+[colors.bright]
+black   = '{color8}'
+red     = '{color9}'
+green   = '{color10}'
+yellow  = '{color11}'
+blue    = '{color12}'
+magenta = '{color13}'
+cyan    = '{color14}'
+white   = '{color15}'
+
+------------------------------------------------------------------
+
+
+- AFTER ADDING THIS run this:
+#  wal -i img.jpg --template colors-alacritty.toml -q
+
+- cHECK IF IT MAKES toml file or not if yes mean in .cache/wal/colors-alacritty.toml than add this to 
+- .config/alacritty/alacritty.toml and add this:
+#  general.import = ["/home/YOUR_USERNAME/.cache/wal/colors-alacritty.toml"]
+#  general.live_config_reload = true
+
+
+
+
+
+
+
+
+
