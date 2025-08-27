@@ -1,0 +1,38 @@
+1. Waydroid on Arch:
+#  yay -S waydroid    #or
+#  yay -S waydroid-image-gapps  #most prefered
+#  sudo waydroid init -s GAPPS
+
+- Start Waydroid Services
+#  sudo systemctl enable --now waydroid-container
+
+- Start the Waydroid session:
+#  waydroid session start
+#  waydroid show-full-ui
+
+- To register do this:
+#  sudo systemctl enable --now waydroid-container
+#  waydroid session start
+
+- After running start keep that promt open and open another terminal and run this
+#  sudo waydroid shell
+#  ANDROID_RUNTIME_ROOT=/apex/com.android.runtime \
+ANDROID_DATA=/data \
+ANDROID_TZDATA_ROOT=/apex/com.android.tzdata \
+ANDROID_I18N_ROOT=/apex/com.android.i18n \
+sqlite3 /data/data/com.google.android.gsf/databases/gservices.db \
+
+- "select * from main where name = \"android_id\";"
+
+- Open this site in your browser:
+#  https://www.google.com/android/uncertified
+- And paste the id there.
+
+
+- To set resulution if messed up:
+
+#  waydroid prop set persist.waydroid.width 1340
+waydroid prop set persist.waydroid.height 720
+
+- Tha restart waydroid
+#  sudo systemctl restart waydroid-container
