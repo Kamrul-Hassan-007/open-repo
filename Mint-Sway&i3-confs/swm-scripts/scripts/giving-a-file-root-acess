@@ -1,0 +1,4 @@
+# to make a file in the usr directory that recuares root permision run this
+- sudo mkdir -p /usr/share/backgrounds/my-walls  = i use this to make my wallpaper file in root file
+#to acess the file directory as root adminitrator run this
+- sudo chown sloth:sloth /usr/share/backgrounds/my-walls  = now we can read and write this file

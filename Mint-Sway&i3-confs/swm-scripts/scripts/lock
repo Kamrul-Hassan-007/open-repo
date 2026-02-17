@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+#Example for sway function , swaylock doesnt have any effects:
+#swaylock -i ~/Pictures/lockscreen.jpg 
+
+#swaylock -i /home/sloth/wallpaper/vladilena-miliz-86-eighty-six-thumb.jpg 
+
+
+#if you want effects like animation, blur you need to install sway-effects, but if you download sway effects it will over write swaylock files , because after downloading sway-effects the system take its name as 'swaylock' by default. 
+#To , avoide that change name of sway-effects package name to "swaylock-effects" and also executable the same
+# - cd swaylock-effects
+# - vim meson.build
+#run this to check:
+# - swaylock-effects -i ~/wallpaper/image.png --clock --indicator --effect-blur 7x5
+
+swaylock-effects -i /home/sloth/wallpaper/vladilena-miliz-86-eighty-six-thumb.jpg  --clock 
+# --effect-blur 5x5
