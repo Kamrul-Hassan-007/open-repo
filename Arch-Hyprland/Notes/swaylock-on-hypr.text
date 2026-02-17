@@ -1,0 +1,65 @@
+🟢 1. swaylock-effects — Best Looking, Highly Customizable
+    ✅ Recommended if you want visual effects like blur, dim, user image, etc.
+
+- Install it:
+#  yay -S swaylock-effects
+- Lock your screen manually:
+#  swaylock --effect-blur 7x5 --fade-in 0.2 
+
+- Create a lock script:
+#  vim ~/.config/scripts-arch/lock.sh
+
+- Paste:
+
+#!/bin/bash
+swaylock --effect-blur 7x5 --fade-in 0.2
+or
+swaylock -i /home/sloth/wallpaper/5cb559b61fc077e6607ce28736227b95.jpg --clock --indicator --effect-blur 7x5
+
+
+
+🟢 2. To make pc screen off after a period of time use swayidle:
+
+- Install it:
+#  sudo pscman -S swayidle
+
+- In hypr config add this:
+
+exec-once = swayidle -w \
+  timeout 300 '~/.config/scripts-arch/lock.sh' \
+  timeout 330 'hyprctl dispatch dpms off' \
+  resume 'hyprctl dispatch dpms on' \
+  before-sleep '~/.config/scripts-arch/lock.sh'
+
+
+-timeout 300 '~/.config/scripts-arch/lock.sh': Locks the screen after 5 minutes of inactivity.
+-timeout 330 'hyprctl dispatch dpms off': Turns off the screen 30 seconds after locking.
+-resume 'hyprctl dispatch dpms on': Turns the screen back on when resuming.
+-before-sleep '~/.config/scripts-arch/lock.sh': Locks the screen before suspending (triggered by lid close or systemctl suspend).
+
+
+
+
+🟢 3. Enable lid suspend action
+- Edit the logind config:
+
+#  sudo nano /etc/systemd/logind.conf
+- Uncomment and set these:
+
+HandleLidSwitch=suspend
+HandleLidSwitchExternalPower=suspend
+HandleLidSwitchDocked=ignore
+
+🟢 4. Handle Lid Close Events with loginctl
+
+- To ensure the lock script runs when the lid is closed, configure swayidle to listen for loginctl lock-session events. Add this to your swayidle configuration in hyprland.conf:
+
+exec-once = swayidle -w \
+  timeout 600 '~/.config/scripts-arch/lock.sh' \
+  timeout 615 'hyprctl dispatch dpms off' \
+  resume 'hyprctl dispatch dpms on' \
+  before-sleep '~/.config/scripts-arch/lock.sh' \
+  lock '~/.config/scripts-arch/lock.sh'
+
+
+
