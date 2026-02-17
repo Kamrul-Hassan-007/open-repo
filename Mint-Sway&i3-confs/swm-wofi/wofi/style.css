@@ -1,0 +1,113 @@
+window{
+      font-family: JetBrains Mono;
+      font-size: 20px;
+      background-color: black;
+      color: white;
+      border: 2px solid white;
+      border-radius: 18px;
+      background: url("/home/sloth/.config/wofi/komi.jpg") no-repeat left;
+     
+}
+
+#entry:selected {
+      background-color: white;
+
+}
+
+#text:selected {
+      color: black;
+      font-family: bold;
+}
+
+
+#outer-box {
+
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-right: 5px;
+      margin-left: 318px;
+      border: none;    
+      border-radius: 8px;
+      background-color: black;
+      padding-top: 20px;
+       
+}
+
+
+#input{
+      background-color: black;
+      color: #bbccdd;
+      margin-bottom: 15px;
+      
+}
+
+#text{
+      padding: 0 4px;
+      margin: 5px;
+
+}
+
+#inner-box {
+       margin-left: 4px;
+}
+
+
+
+
+/*----------------------------------------------------------------------------*/
+
+/* 
+ window {
+border: 2px solid red;
+background-color: red;
+border-radius: 18px;
+background: url("/home/sloth/wallpaper/komi-sniking.jpg") no-repeat center/cover;
+}
+
+#input {
+margin: 5px;
+border: 2px solid blue;
+background-color: blue;
+}
+
+#inner-box {
+margin: 5px;
+border: 2px solid yellow;
+background-color: yellow;
+}
+
+#outer-box {
+margin-top: 5px;
+margin-bottom: 5px;
+margin-right: 5px;
+margin-left: 310px;
+border: 2px solid green;
+border-radius: 8px;
+background-color: green;
+padding-top: 20px;
+}
+
+#scroll {
+margin: 5px;
+border: 2px solid orange;
+background-color: orange;
+}
+
+#text {
+margin: 5px;
+padding: 0 4px;
+border: 2px solid cyan;
+background-color: cyan;
+}  
+
+#entry:selected {
+background-color: rgba(0,0,0,0);
+}
+
+
+#text:selected {
+background-color: red;
+}
+
+
+*/
