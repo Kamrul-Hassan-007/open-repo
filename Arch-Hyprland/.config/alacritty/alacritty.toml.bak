@@ -1,0 +1,39 @@
+# ~/.config/alacritty/alacritty.toml
+import = ["/home/sloth/.cache/wal/colors.yml"]
+general.live_config_reload = true
+
+[terminal]
+shell = { program = "/bin/zsh", args = ["--login"] }
+
+[font]
+size = 12
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[font.bold]
+style = "Bold"  # Inherits family from "normal"
+
+[font.italic]
+style = "Italic"
+
+
+[window]
+decorations = "full"
+opacity = 0.9
+dimensions = { columns = 120, lines = 30 }
+
+[colors.primary]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[colors.normal]
+black = "#45475a"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#bac2de"
