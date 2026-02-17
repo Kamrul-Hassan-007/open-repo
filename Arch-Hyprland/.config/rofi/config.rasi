@@ -1,0 +1,13 @@
+configuration{
+    display-drun: "App";
+    display-window: "Work-Space";
+    font: "JetBrains Mono Font Regular 12";
+    modi: "window,run,drun";
+    drun-display-format: "{icon} {name}";
+    show-icons: true;
+    icon-theme: "Papirus";
+}
+
+@theme "/home/sloth/.config/rofi/theme.rasi"
+
+
